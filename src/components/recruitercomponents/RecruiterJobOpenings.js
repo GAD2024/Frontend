@@ -34,9 +34,9 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
         if (jwtToken) {
           axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
         }
-
+  
         const localJobs = JSON.parse(localStorage.getItem('jobs')) || [];
-
+  
         if (localJobs.length > 0) {
           const updatedJobs = await Promise.all(
             localJobs.map(async (job) => {
@@ -45,13 +45,16 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
               return { ...job, status };
             })
           );
-
-          setJobs(updatedJobs);
+  
+          // Sort job postings by creation date (newest first)
+          const sortedJobs = updatedJobs.sort((a, b) => new Date(b.creationDate) - new Date(a.creationDate));
+  
+          setJobs(sortedJobs);
           setLoading(false);
         } else {
           const jobsResponse = await axios.get(`${apiUrl}/job/recruiters/viewJobs/${user.id}`);
           const jobsData = jobsResponse.data;
-
+  
           const updatedJobs = await Promise.all(
             jobsData.map(async (job) => {
               const statusResponse = await axios.get(`${apiUrl}/job/getStatus/${job.id}`);
@@ -59,10 +62,13 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
               return { ...job, status };
             })
           );
-
-          localStorage.setItem('jobs', JSON.stringify(updatedJobs));
-
-          setJobs(updatedJobs);
+  
+          // Sort job postings by creation date (newest first)
+          const sortedJobs = updatedJobs.sort((a, b) => new Date(b.creationDate) - new Date(a.creationDate));
+  
+          localStorage.setItem('jobs', JSON.stringify(sortedJobs));
+  
+          setJobs(sortedJobs);
           setLoading(false);
         }
       } catch (error) {
@@ -70,7 +76,7 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
         setLoading(false);
       }
     };
-
+  
     fetchJobs();
   }, [user.id]);
 
