@@ -135,9 +135,9 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
                
                 <div className="title-dash flex2 " >
              Job Openings 
-            <button className = "button-status" onClick={() => handleFilter('All')} style={{ marginLeft: '550px' }} >All</button> 
-            <button className = "button-status" onClick={() => handleFilter('Active')}>Active</button>
-            <button className = "button-status" onClick={() => handleFilter('Inactive')}>Inactive</button>
+            <button className = "filter-button" onClick={() => handleFilter('All')} style={{ marginLeft: '500px' }}>All</button>
+            <button className = "filter-button" onClick={() => handleFilter('Active')}>Active</button>
+            <button className = "filter-button" onClick={() => handleFilter('Inactive')}>Inactive</button>
             </div>
             
 
