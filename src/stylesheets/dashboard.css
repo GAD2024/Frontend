@@ -178,10 +178,6 @@
     display: inline-block;
     border-radius: 100px;
 }
-
-.page-title-dashboard .title-dash::after {
-    margin-right: 20px;
-}
   
 .page-title-dashboard svg {
     margin-right: 12px;
