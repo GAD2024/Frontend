@@ -11,6 +11,7 @@ import { apiUrl } from '../../services/ApplicantAPIService';
 function RecruiterJobOpenings({ setSelectedJobId }) {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('All');
   const user1 = useUserContext();
   const user = user1.user;
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -80,6 +81,21 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
     fetchJobs();
   }, [user.id]);
 
+  const handleFilter = (status) => {
+    setFilter(status);  
+  };
+
+  // Filter jobs based on selected filter
+  const filteredJobs = jobs.filter(job => {
+    if (filter === 'Active') {
+      return job.status === 'Active';
+    } else if (filter === 'Inactive') {
+      return job.status === 'Inactive';
+    } else {
+      return true;
+    }
+  });
+
   const handleStatusChange = async (jobId, newStatus) => {
     try {
       await axios.post(`${apiUrl}/job/changeStatus/${jobId}/${newStatus}`);
@@ -109,23 +125,34 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
   return (
     <div>
       <div className="dashboard__content">
+        {/* Filter Buttons */}
+        
         <section className="page-title-dashboard">
           <div className="themes-container">
             <div className="row">
               <div className="col-lg-12 col-md-12 ">
                 <div className="title-dashboard">
-                  <div className="title-dash flex2">Job Openings</div>
+               
+                <div className="title-dash flex2" >
+             Job Openings 
+            <button onClick={() => handleFilter('All')} style={{ marginRight: '10px' }}>All</button>
+            <button onClick={() => handleFilter('Active')}>Active</button>
+            <button onClick={() => handleFilter('Inactive')}>Inactive</button>
+            </div>
+            
+
+                  
                 </div>
               </div>
             </div>
-          </div>
+          </div>  
         </section>
         <section className="flat-dashboard-setting flat-dashboard-setting2">
           <div className="themes-container">
             <div className="content-tab">
               <div className="inner">
                 <div className="group-col-2">
-                  {jobs.map((job) => (
+                  {filteredJobs.map((job) => (
                     <div className={`features-job cl2 bg-white ${job.status === 'Inactive' ? 'inactive-job' : ''}`} key={job.id}>
                       
                       <div className="job-archive-header">
@@ -211,7 +238,7 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
                               // }}
                               className={`button-status ${job.status === 'Inactive' ? 'disabled-button' : ''}`}
                               // disabled={job.status === 'Inactive'}
-                            >
+                            > 
                               View Applicants
                             </button>
                           </Link>
@@ -226,7 +253,7 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
         </section>
       </div>
     </div>
-  );
+  );  
 }
 
 export default RecruiterJobOpenings;
