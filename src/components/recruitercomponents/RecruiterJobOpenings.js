@@ -11,7 +11,7 @@ import { apiUrl } from '../../services/ApplicantAPIService';
 function RecruiterJobOpenings({ setSelectedJobId }) {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('All');
+ // const [filter, setFilter] = useState('All');
   const user1 = useUserContext();
   const user = user1.user;
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -28,6 +28,7 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
     };
   }, []);
 
+  
   useEffect(() => {
     const fetchJobs = async () => {
       try {
@@ -79,8 +80,10 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
     };
   
     fetchJobs();
-  }, [user.id]);
+  }, [user.id]);  
+  
 
+  /*
   const handleFilter = (status) => {
     setFilter(status);  
   };
@@ -94,7 +97,39 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
     } else {
       return true;
     }
-  });
+  });  */
+
+  
+  const handleFilter = async (status) => {
+    setLoading(true);
+    try {
+      const jwtToken = localStorage.getItem('jwtToken');
+      if (jwtToken) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
+      }
+  
+      let apiUrlForStatus;
+      if (status === 'All') {
+        apiUrlForStatus = `${apiUrl}/job/recruiters/viewJobs/${user.id}`;
+      } else {
+        apiUrlForStatus = `http://localhost:8081/job/${status}`;
+      }
+  
+      const response = await axios.get(apiUrlForStatus);
+      const filteredJobs = response.data;
+      setJobs(filteredJobs);
+    } catch (error) {
+      console.error('Error fetching filtered jobs:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+ 
+  
+  
+  
+  
 
   const handleStatusChange = async (jobId, newStatus) => {
     try {
@@ -122,6 +157,8 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
   const convertToLakhs = (amountInRupees) => {
     return (amountInRupees / 100000).toFixed(2); // Assuming salary is in rupees
   };
+
+  
   return (
     <div>
       <div className="dashboard__content">
@@ -136,8 +173,8 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
                 <div className="title-dash flex2 " >
              Job Openings 
             <button className = "filter-button" onClick={() => handleFilter('All')} style={{ marginLeft: '500px' }}>All</button>
-            <button className = "filter-button" onClick={() => handleFilter('Active')}>Active</button>
-            <button className = "filter-button" onClick={() => handleFilter('Inactive')}>Inactive</button>
+            <button className = "filter-button" onClick={() => handleFilter('active')}>Active</button>
+            <button className = "filter-button" onClick={() => handleFilter('inactive')}>Inactive</button>
             </div>
             
 
@@ -152,7 +189,7 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
             <div className="content-tab">
               <div className="inner">
                 <div className="group-col-2">
-                  {filteredJobs.map((job) => (
+                  {jobs.map((job) => (
                     <div className={`features-job cl2 bg-white ${job.status === 'Inactive' ? 'inactive-job' : ''}`} key={job.id}>
                       
                       <div className="job-archive-header">
