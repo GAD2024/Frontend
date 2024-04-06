@@ -276,7 +276,7 @@ function RecruiterJobOpenings({ setSelectedJobId }) {
                               className={`button-status ${job.status === 'Inactive' ? 'disabled-button' : ''}`}
                               // disabled={job.status === 'Inactive'}
                             > 
-                              View Applicants
+                              View job Details
                             </button>
                           </Link>
                         </div>

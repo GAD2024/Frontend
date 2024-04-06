@@ -6,7 +6,10 @@ import { Link,useParams } from 'react-router-dom';
 import $ from 'jquery';
 
 function RecruiterAppliedApplicants({selectedJobId}) {
-  const [applicants, setApplicants] = useState([]);
+  const [jobDetails, setApplicants] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [applied, setApplied] = useState(false);
+
   const { user } = useUserContext();
   const { jobId } = useParams();
   const isMounted = useRef(true);
@@ -14,7 +17,10 @@ function RecruiterAppliedApplicants({selectedJobId}) {
   
   const fetchAllAppliedApplicants = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/applyjob/appliedapplicants/${selectedJobId}`);
+      const response = await axios.get(`${apiUrl}/job/${selectedJobId}`);
+      if(response){
+        setLoading(false);
+      }
         setApplicants(response.data);
         const $table= window.$(tableref.current);
      const timeoutId = setTimeout(() => {  
@@ -38,74 +44,150 @@ function RecruiterAppliedApplicants({selectedJobId}) {
     
   }, [selectedJobId]);
 
+  function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
+    return formattedDate;
+  }
+  const convertToLakhs = (amountInRupees) => {
+    return (amountInRupees / 100000).toFixed(2); // Assuming salary is in rupees
+  };
+
+
+
   return (
     <div>
+    {loading ? null : (
       <div className="dashboard__content">
-  <section className="page-title-dashboard">
-    <div className="themes-container">
-      <div className="row">
-        <div className="col-lg-12 col-md-12 ">
-          <div className="title-dashboard">
-            <div className="title-dash flex2">Applied Applicants</div>
+        <section className="page-title-dashboard">
+          <div className="themes-container">
+            <div className="row">
+              <div className="col-lg-12 col-md-12 ">
+                <div className="title-dashboard">
+                  <div className="title-dash flex2">Full Job Details</div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
+        <section className="flat-dashboard-setting flat-dashboard-setting2">
+          <div className="themes-container">
+            <div className="content-tab">
+              <div className="inner">
+                
+                <article className="job-article">
+                  {jobDetails && (
+                    <div className="top-content">
+                      <div className="features-job style-2 stc-apply  bg-white">
+                        <div className="job-archive-header">
+                          <div className="inner-box">
+                            
+                            <div className="box-content">
+                              <h4>
+                                <a href="#">{jobDetails.companyname}</a>
+                              </h4>
+                              <h3>
+                                <a href="#">{jobDetails.jobTitle}</a>
+                              </h3>
+                              <ul>
+                                <li>
+                                  <span className="icon-map-pin"></span>
+                                  &nbsp;{jobDetails.location}
+                                </li>
+                               
+                              </ul>
+                              <div className="button-readmore"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="job-archive-footer">
+                          <div className="job-footer-left">
+                            <ul className="job-tag">
+                              <li>
+                                <a href="#">{jobDetails.employeeType}</a>
+                              </li>
+                              <li>
+                                <a href="#">{jobDetails.remote ? 'Remote' : 'Office-based'}</a>
+                              </li>
+                              <li>
+<a href="javascript:void(0);"> Exp &nbsp;{jobDetails.minimumExperience} - {jobDetails.maximumExperience} years</a>
+</li>
+<li>
+<a href="javascript:void(0);">&#x20B9; {convertToLakhs(jobDetails.minSalary)} - &#x20B9; {convertToLakhs(jobDetails.maxSalary)} LPA</a>
+</li>
+                            </ul>
+                            <div className="star">
+                              {Array.from({ length: jobDetails.starRating }).map((_, index) => (
+                                <span key={index} className="icon-star-full"></span>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="job-footer-right">
+                            <div className="price">
+                            <span>
+<span style={{fontSize:'12px'}}>Posted on {formatDate(jobDetails.creationDate)}</span></span>
+                            </div>
+                            <div className="button-readmore">
+                              <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <button
+                                  className={`btn-apply btn-popup ${applied ? 'applied' : ''}`}
+                                  
+                                  disabled={jobDetails.jobStatus === 'Already Applied'}
+                                  style={{
+                                    backgroundColor:
+                                      jobDetails.jobStatus === 'Already Applied' ? '#FEF1E8' : '#F97316',
+                                    cursor: 'pointer',
+                                    height: '40px',
+                                    color: '#F97316',
+                                    borderRadius: '8px',
+                                    backgroundColor: '#FFFFFF',
+                                    opacity:'80%',
+                                    borderColor:'#F97316'
+                                  }}
+                                >
+                                  <span className="icon-send"></span>&nbsp;
+                                  {jobDetails.jobStatus === 'Already Applied' ? 'Applied' : 'Apply Now'}
+                                </button>
+                                
+                                {/* <a
+                                  href="/applicant-find-jobs"
+                                  className="btn-apply btn-popup"
+                                  style={{
+                                    display: 'inline-block',
+                                    marginLeft: '10px',
+                                    padding: '5px 20px',
+                                    backgroundColor: '#F97316',
+                                    color: 'white',
+                                    height: '40px',
+                                    textDecoration: 'none',
+                                    borderRadius: '8px',
+                                    cursor: 'pointer',
+                                    fontWeight: 'bold',
+                                  }}
+                                >
+                                  Cancel
+                                </a> */}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {jobDetails && (
+                    <div className="inner-content">
+                      <h5>Full Job Description</h5>
+                      <p>{jobDetails.description}</p>
+                    </div>
+                  )}
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-    </div>
-  </section>
-  <section className="flat-dashboard-setting">
-  <div className="themes-container">
-      <div className="row">
-        <div className="col-lg-12 col-md-12 ">
-          <div className="profile-setting bg-white">
-          <div className="table-container-wrapper">
-          <div className="table-container">
-          {applicants.length === 0 ? (
-                        <p>No Applied applicants are available.</p>
-                      ) : (
-        <table  ref={tableref} className="responsive-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Mobile Number</th>
-              <th>Job Title</th>
-              <th>Applicant Status</th>
-              <th>Experience</th>
-              <th>Skill Name</th>
-              <th>Qualification</th>
-              <th>Location</th>
-            </tr>
-          </thead>
-          <tbody>
-          {applicants.map((application) => (
-                              <tr key={application.applicant.email}>
-                                <td>{application.applicant.name}</td>
-                                <td>{application.applicant.email}</td>
-                                <td>{application.applicant.mobilenumber}</td>
-                                <td>{application.job.jobTitle}</td>
-                                <td>{application.applicantStatus}</td>
-                                <td>{application.job.maximumExperience}</td>
-                                <td>
-                                  {application.job.skillsRequired.map((skill) => (
-                                    <span key={skill.id}>{skill.skillName}, </span>
-                                  ))}
-                                </td>
-                                <td>{application.job.minimumQualification}</td>
-                                <td>{application.job.location}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      )}
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      </section>
-      </div>
-      </div>
+    )}
+  </div>
   );
 }
 export default RecruiterAppliedApplicants;
