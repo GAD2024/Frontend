@@ -28,7 +28,7 @@ function ApplicantFindJobs({ setSelectedJobId }) {
           headers: {
             Authorization: `Bearer ${jwtToken}`,
           },
-        });
+        }); 
         const profileId = profileIdResponse.data;
         setprofileid(profileId);
         if (profileId === 0) {

@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { apiUrl } from '../../services/ApplicantAPIService';
+
 import { useUserContext } from '../common/UserProvider';
-export default function ApplicantJobAlerts() {
+import { useNavigate } from 'react-router-dom';
+
+export default function ApplicantJobAlerts({ setSelectedJobId }) {
   const [jobAlerts, setJobAlerts] = useState([]);
+  const [jobs, setJobs] = useState([]);
   const { user } = useUserContext();
+  const navigate = useNavigate();
+  const userId = user.id;
+
   useEffect(() => {
     const fetchJobAlerts = async () => {
       try {
@@ -16,12 +23,19 @@ export default function ApplicantJobAlerts() {
       }
     };
     fetchJobAlerts();
-  }, []);
+  }, [userId]);
+
   function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
     return formattedDate;
   }
+
+  const handleJobAlertClick = (jobId) => {
+    setSelectedJobId(jobId);
+    navigate('/applicant-view-job');
+  };
+
   return (
     <div className="dashboard__content">
       <section className="page-title-dashboard">
@@ -37,24 +51,24 @@ export default function ApplicantJobAlerts() {
       </section>
       <section className="flat-dashboard-dyagram">
         <div className="themes-container">
-        <div className="row">
-          <div className="col-lg-12 col-md-12">
+          <div className="row">
+            <div className="col-lg-12 col-md-12">
               <div className="box-notifications">
-              {jobAlerts.length > 0 ? (
-                <ul>
-                  {jobAlerts.map(alert => (
-                    <li key={alert.alertsId} className='inner bg-white' style={{width:'100%',padding:'2%',borderRadius:'10px'}}>
-                      <a className="noti-icon"><span className="icon-bell1"></span></a>
-                      <h4>Success!&nbsp; {alert.companyName} has updated the job status to {' '}
-                             {alert.status} on {' '} {formatDate(alert.changeDate)}. For the role of {' '} {alert.jobTitle}.
-                     </h4>
-                      {alert.applyJob && (
-                        <a href="#" className="p-16 color-3">{alert.applyJob.jobTitle}</a>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-                 ) : (
+                {jobAlerts.length > 0 ? (
+                  <ul>
+                    {jobAlerts.map(alert => (
+                      <li key={alert.alertsId} onClick={() => handleJobAlertClick(alert.jobId)} className='inner bg-white' style={{ width: '100%', padding: '2%', borderRadius: '10px' }}>
+                        <a className="noti-icon"><span className="icon-bell1"></span></a>
+                        <h4>Success!&nbsp; {alert.companyName} has updated the job status to {' '}
+                          {alert.status} on {' '} {formatDate(alert.changeDate)}. For the role of {' '} {alert.jobTitle}.
+                        </h4>
+                        {alert.applyJob && (
+                          <a href="#" className="p-16 color-3">{alert.applyJob.jobTitle}</a>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
                   <h3>No alerts are found.</h3>
                 )}
               </div>
@@ -64,5 +78,4 @@ export default function ApplicantJobAlerts() {
       </section>
     </div>
   );
-
 }
