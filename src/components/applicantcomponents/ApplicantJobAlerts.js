@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 export default function ApplicantJobAlerts({ setSelectedJobId }) {
   const [jobAlerts, setJobAlerts] = useState([]);
   const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { user } = useUserContext();
   const navigate = useNavigate();
   const userId = user.id;
@@ -25,6 +26,56 @@ export default function ApplicantJobAlerts({ setSelectedJobId }) {
     fetchJobAlerts();
   }, [userId]);
 
+  const getAuthToken = () => {
+    return localStorage.getItem('jwtToken');
+  };
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        // Fetch the user's profile ID
+        const profileIdResponse = await axios.get(`${apiUrl}/applicantprofile/${userId}/profileid`, {
+          headers: {
+            Authorization: `Bearer ${getAuthToken()}`,
+          },
+        });
+        const profileId = profileIdResponse.data;
+  
+        // Fetch jobs based on profile ID
+        let jobData;
+        if (profileId === 0) {
+          // Fetch promoted jobs
+          const promotedJobsResponse = await axios.get(`${apiUrl}/job/promote/${userId}/yes`, {
+            headers: {
+              Authorization: `Bearer ${getAuthToken()}`,
+            },
+          });
+          jobData = promotedJobsResponse.data;
+        } else {
+          // Fetch recommended jobs
+          const recommendedJobsResponse = await axios.get(`${apiUrl}/recommendedjob/findrecommendedjob/${userId}`, {
+            headers: {
+              Authorization: `Bearer ${getAuthToken()}`,
+            },
+          });
+          jobData = recommendedJobsResponse.data;
+        }
+  
+        // Set the fetched job data in state
+        setJobs(jobData);
+        
+        // Print the jobId
+        console.log("JobId:", jobData.jobId);
+      } catch (error) {
+        console.error('Error fetching job data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchJobs();
+  }, [userId]);
+  
   function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
