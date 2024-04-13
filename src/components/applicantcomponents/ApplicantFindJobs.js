@@ -51,6 +51,8 @@ function ApplicantFindJobs({ setSelectedJobId }) {
           jobData = recommendedJobsResponse.data;
         }
         setJobs(jobData);
+        console.log('Job Data:', jobData);
+
       } catch (error) {
         console.error('Error fetching job data:', error);
       } finally {
@@ -71,24 +73,7 @@ function ApplicantFindJobs({ setSelectedJobId }) {
     };
     fetchData();
   }, []);
-  // const handleSaveJob = async (jobId) => {
-  //   try {
-  //     const response = await axios.post(`${apiUrl}/savedjob/applicants/savejob/${userId}/${jobId}`, {
-  //         headers: {
-  //           Authorization: `Bearer ${jwtToken}`,
-  //         },
-  //       });
-  //     const { message } = response.data;
-  //      if(response.status =200){
-  //       window.alert('Job Saved successfully');
-  //      }
-  //      fetchJobs();
-  //   } catch (error) {
-  //     window.alert('Job has already been saved by the applicant');
-  //     console.error('Error saving job:', error);
-  //   }
-  // };
- 
+  
   const handleSaveJob = async (jobId) => {
     try {
       const jwtToken = localStorage.getItem('jwtToken');
