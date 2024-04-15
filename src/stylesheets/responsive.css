@@ -2198,7 +2198,7 @@
 
   /* -----------------header------------------------------= */
   #header .sticky-area-wrap .header-ct-left .logo .site-logo {
-    width: 130px !important;
+    width: 130px ;
     display: block;
     margin-top:5px;
   }
@@ -2776,4 +2776,11 @@
     right: -10px;
   }
 } 
+/*
+@media only screen and (max-width: 320px) {
+  #header .sticky-area-wrap .header-ct-left .logo .site-logo {
+    width: 60px !important; /* Adjusted width for smaller viewports 
+  }
+} */
+
 

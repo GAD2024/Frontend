@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate} from 'react-router-dom';
 import $ from 'jquery';
-
+ 
 import '../../stylesheets/bootstrap.min.css';
 import '../../stylesheets/boostrap-select.min.css';
 import '../../stylesheets/swiper-bundle.min.css';
@@ -13,157 +13,126 @@ import '../../stylesheets/colors/color6.css';
 import '../../stylesheets/responsive.css';
 import '../../fonts/fonts.css';
 import '../../stylesheets/jquery.dataTables.min.css';
-
+ 
 const Nav = () => {
+ 
   const [isOpen, setIsOpen] = useState(window.innerWidth >= 768);
-
+ 
   const handleToggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
+ 
   useEffect(() => {
     const handleResize = () => {
       setIsOpen(window.innerWidth >= 768);
     };
-
+ 
     window.addEventListener('resize', handleResize);
-
+ 
     $("#left-menu-btn").on("click", function (e) {
       e.preventDefault();
       handleToggleMenu();
     });
-
+ 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
-  useEffect(() => {
-    const handleViewportChange = () => {
-      const viewportWidth = window.innerWidth;
-      if (viewportWidth <= 320) {
-        // Adjust the styles of the buttons for smaller viewports
-        $('.sub-account-item a').css({
-          width: '100%',
-          padding: '8px 10px',
-          fontSize: '8px',
-          justifyContent : 'space-between',
-          flexDirection: 'column',
-          alignItems: 'center'
-         
-        });
-      } else {
-        // Reset the styles of the buttons for larger viewports
-        $('.sub-account-item a').css({
-          width: '',
-          padding: '',
-          fontSize: '',
-          justifyContent : '',
-          flexDirection: '',
-          alignItems: ''
-         
-        
-        });
-      }
-    };
-
-    window.addEventListener('resize', handleViewportChange);
-
-    return () => {
-      window.removeEventListener('resize', handleViewportChange);
-    };
-  }, []);
-
+ 
+ 
   return (
     <div>
-      <>
-        <a id="scroll-top" />
-        <div className="boxed">
-          <header id="header" className="header header-default">
-            <div className="tf-container">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="sticky-area-wrap">
-                    <div className="header-ct-left">
-                      <div id="logo" className="logo">
-                        <a href="/">
-                          <img
-                            className="site-logo"
-                            src="images/logo.png"
-                            alt="Image"
-                          />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="header-ct-right st-1">
-                      <div className="header-customize-item account">
-                        <div className="sub-account-item">
-                          <a
-                            href="/candidate"
-                            style={{
-                              color: '#FFFFFF',
-                              backgroundColor: '#f97316',
-                              border: '1px solid #f97316',
-                              padding: '10px 10px 10px 30px',
-                              borderRadius: '8px',
-                              display: 'inline-flex',
-                              textAlign: 'center',
-                              width: '130px',
-                            }}
-                            onMouseOver={(e) => {
-                              e.target.style.color = '#FFFFFF';
-                              e.target.style.backgroundColor = '#EE6D12';
-                            }}
-                            onMouseOut={(e) => {
-                              e.target.style.color = '#FFFFEF';
-                              e.target.style.backgroundColor = '#f97316';
-                            }}
-                            onClick={() => {
-                              localStorage.clear();
-                            }}
-                          >
-                            Find Jobs
-                          </a>
-                        </div>
-                        <div className="sub-account-item">
-                          <a
-                            href="/recruiter"
-                            style={{
-                              color: '#f97316',
-                              backgroundColor: 'white',
-                              border: '1px solid #f97316',
-                              padding: '10px 10px 10px 30px',
-                              borderRadius: '8px',
-                              display: 'inline-flex',
-                              textAlign: 'center',
-                              width: '190px',
-                            }}
-                            onMouseOver={(e) => {
-                              e.target.style.color = '#FFFFFF';
-                              e.target.style.backgroundColor = '#f97316';
-                            }}
-                            onMouseOut={(e) => {
-                              e.target.style.color = '#f97316';
-                              e.target.style.backgroundColor = 'white';
-                            }}
-                            onClick={() => {
-                              localStorage.clear();
-                            }}
-                          >
-                            Find Candidates
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+  <>
+  <a id="scroll-top" />
+ 
+  
+  <div className="boxed">
+    <header id="header" className="header header-default">
+      <div className="tf-container">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="sticky-area-wrap">
+              <div className="header-ct-left">
+                <div id="logo" className="logo">
+                  <a href="/">
+                    <img
+                      className="site-logo"
+                      src="images/logo.png"
+                      alt="Image"
+                    />
+                  </a>
                 </div>
               </div>
-            </div>
-          </header>
-        </div>
-      </>
+             
+             <div className="header-ct-right st-1">
+  <div className="header-customize-item account">
+  <div className="sub-account-item">
+      <a
+        href="/candidate"
+        style={{
+          color: '#FFFFFF',
+          backgroundColor: '#f97316',
+          border: '1px solid #f97316',
+          padding: '10px 10px 10px 30px',
+          borderRadius: '8px',
+          display: 'inline-flex',
+          textAlign: 'center',
+          width: '130px',
+        }}
+        onMouseOver={(e) => {
+          e.target.style.color = '#FFFFFF';
+          e.target.style.backgroundColor = '#EE6D12';
+        }}
+        onMouseOut={(e) => {
+          e.target.style.color = '#FFFFEF';
+          e.target.style.backgroundColor = '#f97316';
+        }}
+        onClick={() => {
+          localStorage.clear();
+        }}
+      >
+        Find Jobs
+      </a>
     </div>
+    <div className="sub-account-item">
+      <a
+        href="/recruiter"
+        style={{
+          color: '#f97316',
+          backgroundColor: 'white',
+          border: '1px solid #f97316',
+          padding: '10px 10px 10px 30px',
+          borderRadius: '8px',
+          display: 'inline-flex',
+          textAlign: 'center',
+          width: '190px',
+        }}
+        onMouseOver={(e) => {
+          e.target.style.color = '#FFFFFF';
+          e.target.style.backgroundColor = '#f97316';
+        }}
+        onMouseOut={(e) => {
+          e.target.style.color = '#f97316';
+          e.target.style.backgroundColor = 'white';
+        }}
+        onClick={() => {
+          localStorage.clear();
+        }}
+      >
+        Find Candidates
+      </a>
+    </div>
+  </div>
+</div>
+       
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+</>
+</div>
   );
 };
-
 export default Nav;
