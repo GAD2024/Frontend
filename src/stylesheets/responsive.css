@@ -2198,7 +2198,7 @@
 
   /* -----------------header------------------------------= */
   #header .sticky-area-wrap .header-ct-left .logo .site-logo {
-    width: 130px ;
+    width: 130px !important;
     display: block;
     margin-top:5px;
   }
@@ -2775,12 +2775,11 @@
   .features-job .job-archive-header span.icon-heart {
     right: -10px;
   }
-} 
-/*
+}
+
+
 @media only screen and (max-width: 320px) {
   #header .sticky-area-wrap .header-ct-left .logo .site-logo {
-    width: 60px !important; /* Adjusted width for smaller viewports 
+    width: 70px !important; 
   }
-} */
-
-
+} 

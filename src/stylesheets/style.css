@@ -591,7 +591,10 @@ input[type="color"],
   align-items: center;
 }
 
-
+.sticky-area-wrap .header-ct-left .logo .site-logo {
+  width: 220px;
+  display: block;
+}
 
 @media only screen and (min-width: 991px) and (max-width: 1092px) {
   .sticky-area-wrap .header-ct-left .logo .site-logo {
@@ -1472,13 +1475,13 @@ input[type="color"],
   }
   .sticky-area-wrap .header-ct-right .account
 .sub-account-item{
-    padding: 2px!important;
-    font-size: 7px!important;
+    padding: 2px;
+    font-size: 7px;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 500!important;
-  line-height: 2px!important;
-  margin-right: 2px!important;
-  margin-left: 2px!important;
+  line-height: 2px;
+  margin-right: 2px;
+  margin-left: 2px;
   }
   #header .sticky-area-wrap .header-ct-left .logo .site-logo {
     width: 115px!important;
@@ -3393,41 +3396,18 @@ input[type="color"],
 @media screen and (max-width: 465px) {
   .sticky-area-wrap .header-ct-right .account .sub-account-item a {
     font-size: 14px;
-    width: 100px ; 
   }
 }
 
-@media screen and (max-width: 400px) {
-  .sticky-area-wrap .header-ct-right .account .sub-account-item a {
-    font-size: 9px;
-    width: 100px;
-  }
-}
 
 @media screen and (max-width: 320px) {
-  
-  .sticky-area-wrap .header-ct-right .header-customize-item.account .sub-account-item {
-    width: calc(50% - 10px); /* Adjust button width to 50% of the container width */
-    margin-right: 5px; /* Add some margin between buttons */
-    margin-bottom: 2px; /* Add margin at the bottom to separate buttons */
-  }
-
-  .sticky-area-wrap .header-ct-right .header-customize-item.account .sub-account-item:last-child {
-    margin-right: 0; /* Remove right margin from the last button to prevent overflow */
+  .sticky-area-wrap .header-ct-right .account .sub-account-item a {
+    font-size: 9px;
+    width: 100px !important;
+    padding : 1px !important;
+    margin-right : -20px;
+    justify-content: center; /* Horizontally center the text */
+    align-items: center; /* Vertically center the text */
   }
 }
-
-
-
-.sticky-area-wrap .header-ct-left .logo .site-logo {
-  width: 220px; /* Initial width of the logo */
-  display: block;
-}
-
-@media (max-width: 320px) {
-  .sticky-area-wrap .header-ct-left .logo .site-logo {
-    width: 100px !important; /* Adjusted width for smaller viewports */
-  }
-}
-
 
