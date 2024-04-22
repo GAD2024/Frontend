@@ -216,6 +216,17 @@
     transition: all 0.4s;
 }
 
+.flat-icon-dashboard .box-icon .section {
+    background-color: #fff;
+    width: calc(25% - 20px);
+    margin-left: 20px;
+    padding: 21px 20px 19px 20px;
+    align-items: center;
+    border-radius: 8px;
+}
+
+ 
+
 .flat-icon-dashboard .box-icon:hover {
     -webkit-transform: translateY(calc(-1.5rem / 5));
     transform: translateY(calc(-1.5rem / 5));

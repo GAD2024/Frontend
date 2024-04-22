@@ -6,7 +6,7 @@
   }
 }
 
-
+  
 
 @media only screen and (max-width: 1600px) {
 
@@ -2198,10 +2198,11 @@
 
   /* -----------------header------------------------------= */
   #header .sticky-area-wrap .header-ct-left .logo .site-logo {
-    width: 130px !important;
+    width: 130px ;
     display: block;
     margin-top:5px;
   }
+
   @media only screen and (min-width: 50px) and (max-width: 300px) {
     #header .sticky-area-wrap .header-ct-left .logo .site-logo {
         width: 100px;
@@ -2777,9 +2778,35 @@
   }
 }
 
-
+/*
 @media only screen and (max-width: 320px) {
   #header .sticky-area-wrap .header-ct-left .logo .site-logo {
-    width: 70px !important; 
+    width: 100px !important; 
   }
 } 
+
+@media screen and (min-width: 321px) and (max-width: 776px) {
+  #header .sticky-area-wrap .header-ct-left .logo .site-logo {
+    width: 100px !important; /* Adjust width as needed 
+  }
+}
+ */
+
+ @media only screen and (max-width: 320px) {
+  #header .sticky-area-wrap .header-ct-left .logo .site-logo {
+    width: 90px !important; 
+  }
+} 
+
+@media screen and (min-width: 321px) and (max-width: 480px) {
+  #header .sticky-area-wrap .header-ct-left .logo .site-logo {
+    width: 100px !important; 
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 776px) {
+  #header .sticky-area-wrap .header-ct-left .logo .site-logo {
+    width: 130px !important;  
+  }
+}   
+

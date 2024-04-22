@@ -1287,6 +1287,8 @@ input[type="color"],
   padding: 0 15px;
   font-weight: 500;
 }
+
+
 .sticky-area-wrap .header-ct-right {
   /* flex-grow: 1;
   justify-content: flex-end;
@@ -1473,7 +1475,8 @@ input[type="color"],
     margin-left: 30px;
  
   }
-  .sticky-area-wrap .header-ct-right .account
+
+  /* .sticky-area-wrap .header-ct-right .account
 .sub-account-item{
     padding: 2px;
     font-size: 7px;
@@ -1482,7 +1485,7 @@ input[type="color"],
   line-height: 2px;
   margin-right: 2px;
   margin-left: 2px;
-  }
+  } */
   #header .sticky-area-wrap .header-ct-left .logo .site-logo {
     width: 115px!important;
     display: block!important;
@@ -3393,21 +3396,50 @@ input[type="color"],
   }
 }
 
-@media screen and (max-width: 465px) {
+/* @media screen and (max-width: 465px) {
   .sticky-area-wrap .header-ct-right .account .sub-account-item a {
     font-size: 14px;
   }
-}
+} */
 
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 320px)  {
   .sticky-area-wrap .header-ct-right .account .sub-account-item a {
-    font-size: 9px;
-    width: 100px !important;
-    padding : 1px !important;
+    font-size: 9px !important;
+    width: 90px !important;
+    padding : 0px !important;
     margin-right : -20px;
-    justify-content: center; /* Horizontally center the text */
-    align-items: center; /* Vertically center the text */
+    justify-content: center;  
+    align-items: center; 
   }
 }
 
+
+
+@media screen and (min-width: 321px) and (max-width: 776px) {
+  .sticky-area-wrap .header-ct-right .account .sub-account-item a {
+    font-size: 9px;
+    width: 90px !important;
+    padding: 2px 2px 2px 2px !important;
+    margin-right: -20px; 
+    justify-content: center; 
+    align-items: center; 
+}
+}
+
+
+
+/* 
+ @media screen and (min-width: 321px) and (max-width: 540) {
+  .sticky-area-wrap .header-ct-right .account .sub-account-item a {
+    font-size: 2px !important;
+  }
+}  */
+
+/* @media screen and (min-width: 481px) and (max-width: 540) {
+.sticky-area-wrap .header-ct-right .account .sub-account-item a {
+    width : 100px !important;
+
+}
+
+} */

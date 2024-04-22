@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import { useUserContext } from '../common/UserProvider';
 import ApplicantAPIService,{ apiUrl } from '../../services/ApplicantAPIService';
+
 const ApplicantDashboard = () => 
 {
   const [token, setToken] = useState('');
@@ -187,7 +188,29 @@ const ApplicantDashboard = () =>
     </div>
   </div>
 </section>
+<section className="new-section">
+  <div className="themes-container">
+    <div className="row">
+      <div className="row-section" style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="col-lg-6 col-md-6">
+          <div className="wrap-icon widget-counter">
+            <h2>Build your professional Resume here</h2>
+            <p>Resume builder banner- Transform your career trajectory with a meticulously crafted professional resume. Seize opportunities and stand out from the crowd!</p>
+            <button>Create now</button>
+          </div>
+        </div>
+        <div className="col-lg-6 col-md-6">
+          <div className="section-image">
+            <img src="images/MicrosoftTeams-image.jpg" alt="images"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </div>
+
     )
 }
 </div>

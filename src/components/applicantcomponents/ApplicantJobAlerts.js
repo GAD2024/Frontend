@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { apiUrl } from '../../services/ApplicantAPIService';
-
 import { useUserContext } from '../common/UserProvider';
 import { useNavigate } from 'react-router-dom';
 

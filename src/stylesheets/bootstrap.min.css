@@ -702,8 +702,23 @@ progress {
     flex-wrap: wrap;
     margin-top: calc(var(--bs-gutter-y) * -1);
     margin-right: calc(var(--bs-gutter-x) * -.5);
-    margin-left: calc(var(--bs-gutter-x) * -.5)
+    margin-left: calc(var(--bs-gutter-x) * -.5);
+    
 }
+
+.row-section {
+    
+    background-color: #fff;
+    width: calc(25% - 20px);
+    margin-left: 30px;
+    margin-right: 50px !important;
+    margin-bottom: 100px;
+    padding: 21px 20px 19px 20px;
+    align-items: center;
+    border-radius: 8px;
+} 
+
+ 
 
 .row>* {
     flex-shrink: 0;
