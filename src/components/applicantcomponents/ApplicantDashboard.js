@@ -194,9 +194,9 @@ const ApplicantDashboard = () =>
       <div className="row-section" style={{ display: 'flex', alignItems: 'center' }}>
         <div className="col-lg-6 col-md-6">
           <div className="wrap-icon widget-counter">
-            <h2>Build your professional Resume here</h2>
+            <h3>Build your professional Resume for free</h3>
             <p>Resume builder banner- Transform your career trajectory with a meticulously crafted professional resume. Seize opportunities and stand out from the crowd!</p>
-            <button>Create now</button>
+            <button className="button-status1">Create now</button>
           </div>
         </div>
         <div className="col-lg-6 col-md-6">
