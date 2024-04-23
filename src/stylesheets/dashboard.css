@@ -4519,3 +4519,50 @@ font-size: 14px;
     background-color: #f2f2f2; /* Change this to the desired gray color */
   }
   
+  /* Adjustments for viewports with width 320 pixels */
+@media only screen and (min-width: 320px) and (max-width: 775px) {
+    .new-section {
+      max-width: 85%; /* Adjusting the max-width to fit smaller screens */
+      margin-left: 20px; /* Removing negative margin */
+      margin-right: 0; /* Removing negative margin */
+    }
+  
+    .row-section {
+      margin-left: 0; /* Removing negative margin */
+      margin-right: 0; /* Removing negative margin */
+    }
+  
+    .row-section .col-lg-6,
+    .row-section .col-md-6 {
+      flex: 1; /* Each column takes full width */
+      max-width: 100%; /* Adjusting max-width */
+      margin-left: 0; /* Removing margin */
+      margin-right: 0; /* Removing margin */
+    }
+  
+    .wrap-icon {
+      padding: 10px; /* Adjusting padding */
+    }
+  
+    .row-section h3 {
+      font-size: 18px; /* Adjusting font-size */
+      margin-top: 10px; /* Adjusting margin-top */
+    }
+  
+    .row-section p {
+      font-size: 14px; /* Adjusting font-size */
+      margin-top: 5px; /* Adjusting margin-top */
+    }
+  
+    .row-section button {
+      font-size: 14px; /* Adjusting font-size */
+      padding: 8px 16px; /* Adjusting padding */
+      margin-top: 10px; /* Adjusting margin-top */
+    }
+  
+    .section-image {
+      justify-content: center; /* Centering the image */
+      margin-top: 20px; /* Adjusting margin-top */
+    }
+  }
+  
