@@ -214,6 +214,29 @@ function RecruiterDashboard() {
       </div>
     </div>
   </section>
+  <section className="new-section">
+    <div className="themes-container">
+      <div className="row">
+        <div className="row-section" style={{ display: 'flex', alignItems: 'center' }}>
+         <div className="col-lg-6 col-md-6">
+          <div className="wrap-icon widget-counter">
+          <h2>Find the right candidate</h2>
+          <p>Resume builder banner- Transform your career trajectory with a meticulously crafted professional resume. Seize opportunities and stand out from the crowd!</p>
+            <button className="button-status1" >Post Job</button>
+            </div>
+          </div>
+           <div className="col-lg-6 col-md-6">
+           <div className="section-image">
+           <img src="images/RecruiterSideImage.png" alt="images"/>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
       <br />
 </div>
     </div>
@@ -236,3 +259,4 @@ function formatDateTime(dateTimeArray) {
  
   return `${formattedDate} ${formattedTime}`;
 }
+

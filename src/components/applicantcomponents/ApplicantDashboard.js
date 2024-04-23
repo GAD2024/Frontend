@@ -200,21 +200,20 @@ const ApplicantDashboard = () =>
     <div className="row">
       <div className="row-section" style={{ display: 'flex', alignItems: 'center' }}>
         <div className="col-lg-6 col-md-6">
-          <div className="wrap-icon widget-counter">
+          <div className="wrap-icon widget-counter" style={{ position: 'relative' }}>
             <h3>Build your professional Resume for free</h3>
             <p>Resume builder banner- Transform your career trajectory with a meticulously crafted professional resume. Seize opportunities and stand out from the crowd!</p>
+            
+            <div className="section-image">
+              <img src="images/MicrosoftTeams-image.jpg" alt="images"/>
+            </div>
             <button className="button-status1" onClick={handleRedirectToMyResumePage}>Create now</button>
-          </div>
-        </div>
-        <div className="col-lg-6 col-md-6">
-          <div className="section-image">
-            <img src="images/MicrosoftTeams-image.jpg" alt="images"/>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</section>  
 
 </div>
 

@@ -184,16 +184,11 @@ useEffect(() => {
               <span className="dash-titles">Dashboard</span>
             </Link>
           </li>
-          <li>
-            <Link to="/recruiter-postjob" className={location.pathname === "/recruiter-postjob" ? "tf-effect active" : ""}>
-              <span className="icon-work dash-icon"></span>
-              <span className="dash-titles">Post Job</span>
-            </Link>
-          </li>
+          
           <li>
             <Link to="/recruiter-jobopenings" className={location.pathname === "/recruiter-jobopenings" ? "tf-effect active" : ""}>
               <span className="icon-submit dash-icon"></span>
-              <span className="dash-titles">Job Openings</span>
+              <span className="dash-titles">Posted Jobs</span>
             </Link>
           </li>
           <li>
@@ -241,6 +236,12 @@ useEffect(() => {
             <Link to="/recruiter-my-organization" className={location.pathname === "/recruiter-my-organization" ? "tf-effect active" : ""}>
               <span className="icon-mypackage dash-icon"></span>
               <span className="dash-titles">My Organization</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/recruiter-postjob" className={location.pathname === "/recruiter-postjob" ? "tf-effect active" : ""}>
+              {/* <span className="icon-work dash-icon"></span> */}
+              <button className="button-status">Post Job</button>
             </Link>
           </li>
         </ul>
