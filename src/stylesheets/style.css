@@ -584,6 +584,8 @@ input[type="color"],
   justify-content: center;
 }
 
+
+
 .sticky-area-wrap .header-ct-left {
   flex-grow: 0;
   justify-content: space-between;
@@ -1290,10 +1292,6 @@ input[type="color"],
 
 
 .sticky-area-wrap .header-ct-right {
-  /* flex-grow: 1;
-  justify-content: flex-end;
-  display: flex;
-  align-items: center; */
   flex-grow: 1;
   justify-content: flex-end;
   display: flex;

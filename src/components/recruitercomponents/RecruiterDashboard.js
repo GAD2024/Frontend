@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import { useUserContext } from '../common/UserProvider';
 import ApplicantAPIService,{ apiUrl } from '../../services/ApplicantAPIService';
+import { useNavigate } from 'react-router-dom';
 
 function RecruiterDashboard() {
     const [token, setToken] = useState('');
@@ -11,6 +12,7 @@ function RecruiterDashboard() {
     const [contJobApplicants, setJobApplicants] = useState(0);
     const [countInterviews, setInterviews] = useState(0);
     const [applicants, setApplicants] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const jwtToken = localStorage.getItem('jwtToken');
@@ -99,6 +101,15 @@ function RecruiterDashboard() {
         const todayTimestamp = new Date().setHours(0, 0, 0, 0);
         return interviewTimestamp >= todayTimestamp && interviewTimestamp < todayTimestamp + 24 * 60 * 60 * 1000;
       });
+
+
+      const handleRedirectToPostJob = () => {
+        navigate('/recruiter-postjob')
+      }
+
+     
+
+
   return (
     <div>
 <div className="dashboard__content">
@@ -214,49 +225,51 @@ function RecruiterDashboard() {
       </div>
     </div>
   </section>
-  <section className="new-section">
-    <div className="themes-container">
-      <div className="row">
-        <div className="row-section" style={{ display: 'flex', alignItems: 'center' }}>
-         <div className="col-lg-6 col-md-6">
-          <div className="wrap-icon widget-counter">
-          <h2>Find the right candidate</h2>
-          <p>Resume builder banner- Transform your career trajectory with a meticulously crafted professional resume. Seize opportunities and stand out from the crowd!</p>
-            <button className="button-status1" >Post Job</button>
+  <section className="new-section1">
+  <div className="themes-container">
+    <div className="row">
+      <div className="row-section1" style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="col-lg-6 col-md-6">
+          <div className="wrap-icon widget-counter" style={{ position: 'relative' }}>
+            <h3>Find the right candidate</h3>
+            <p>Get access to certified entry-level candidates for your hiring requirements</p>
+            <div className="section-image1">
+              <img src="images/RecruiterSideImage.jpg" alt="images"/>
             </div>
+            <button className="button-status1" onClick={handleRedirectToPostJob}>Post Job</button>
           </div>
-           <div className="col-lg-6 col-md-6">
-           <div className="section-image">
-           <img src="images/RecruiterSideImage.png" alt="images"/>
-              </div>
-           </div>
         </div>
+        
+          
+        
       </div>
     </div>
+  </div>
+</section>
 
-  </section>
+
+  
 
 
-      <br />
 </div>
     </div>
   )
 }
 
 export default RecruiterDashboard;
-function formatDateTime(dateTimeArray) {
-  const [year, month, day, hour, minute] = dateTimeArray;
-  const formattedDate = new Date(year, month - 1, day).toLocaleDateString('en-US', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  });
-  const formattedTime = new Date(year, month - 1, day, hour, minute).toLocaleTimeString('en-US', {
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: true,
-  });
+// function formatDateTime(dateTimeArray) {
+//   const [year, month, day, hour, minute] = dateTimeArray;
+//   const formattedDate = new Date(year, month - 1, day).toLocaleDateString('en-US', {
+//     day: 'numeric',
+//     month: 'short',
+//     year: 'numeric',
+//   });
+//   const formattedTime = new Date(year, month - 1, day, hour, minute).toLocaleTimeString('en-US', {
+//     hour: 'numeric',
+//     minute: 'numeric',
+//     hour12: true,
+//   });
  
-  return `${formattedDate} ${formattedTime}`;
-}
+//   return `${formattedDate} ${formattedTime}`;
+// }
 

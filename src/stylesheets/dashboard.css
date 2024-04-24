@@ -728,6 +728,7 @@ tbody tr td:nth-child(2) {
     position: relative;
     cursor: pointer;
     display: inline-block;
+    margin-top: -16px !important;
 }
 
 .hamburger-icon span {
@@ -4559,9 +4560,64 @@ font-size: 14px;
       margin-top: 15px; /* Adjusting margin-top */
       /*margin-left: 57px; */
       width:200px !important;
-    }
+    }   
   
     .section-image {
+        position: static;
+        margin-top: 20px; /* Adjust margin-top as needed */
+        text-align: center; /* Center the image */
+        margin-left: 0; /* Remove margin-left */
+        margin-right: 0; /* Remove margin-right */
+        justify-content: center;
+      }
+  }
+
+
+  /* Media query for Recruiter side */
+
+  @media only screen and (min-width: 320px) and (max-width: 775px) {
+    .new-section1 {
+      max-width: 85% ;
+      margin-left: 25px !important; 
+      margin-right: 25px !important; 
+    }
+  
+    .row-section1 {
+      margin-left: 0; 
+      margin-right: 0;
+     
+    }
+  
+    .row-section1 .col-lg-6,
+    .row-section1 .col-md-6 {
+      flex: 1; /* Each column takes full width */
+      max-width: 100%; /* Adjusting max-width */
+      margin-left: 0; /* Removing margin */
+      margin-right: 0; /* Removing margin */
+    }
+  
+    .wrap-icon {
+      padding: 10px; /* Adjusting padding */
+    }
+  
+    .row-section1 h3 {
+      font-size: 18px; /* Adjusting font-size */
+      margin-top: 10px; /* Adjusting margin-top */
+    }
+  
+    .row-section1 p {
+      font-size: 14px; /* Adjusting font-size */
+      margin-top: 5px; /* Adjusting margin-top */
+    }
+  
+    .row-section1 button {
+      font-size: 14px; /* Adjusting font-size */
+      padding: 8px 16px; /* Adjusting padding */
+      margin-top: 45px; /* Adjusting margin-top */
+      width:200px !important;
+    }   
+  
+    .section-image1 {
         position: static;
         margin-top: 20px; /* Adjust margin-top as needed */
         text-align: center; /* Center the image */

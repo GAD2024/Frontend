@@ -775,6 +775,145 @@ progress {
     }
   } 
 
+
+  .new-section1 {
+    max-width: 800px;
+    margin-right: 60px !important; 
+    margin-left: 14px !important;
+    padding-bottom: 100px;
+    margin: 0 auto;
+  }
+
+ 
+
+  .row-section1 {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    margin-bottom: 100px;
+    margin-right: 100px;
+    
+  }
+
+  .row-section1 h3 {
+    margin-top: 8px;
+  }
+
+  .row-section1 p {
+    margin-top: 10px ; 
+    font-size: 12px !important;
+  }
+  
+  .row-section1 button {
+    margin-top: 10px;
+    align-self: flex-start;
+    margin-bottom: 10px;
+  }
+
+  
+
+  .row-section1 .col-lg-6,
+  .row-section1 .col-md-6 {
+    flex: 0 0 50%; 
+  }
+
+  .section-image1 {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: flex-start;
+    margin-right: -350px;
+    margin-top: -80px;
+    margin-bottom: -30px;
+  }
+
+  
+  .section-image1 img {
+    max-width: 150px;
+  }
+  
+  @media (max-width: 768px) {
+    .row-section1 {
+      flex-direction: column;
+      align-items: center;
+    }
+  }  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /* .new-section1 {
+    max-width: 850px;
+    margin-right: 60px !important; 
+    margin-left: 14px !important;
+    padding-bottom: 100px;
+    margin: 0 auto;
+  }
+
+  
+  
+
+  .row-section1 {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    margin-bottom: 100px;
+    margin-right: 100px;
+  } 
+
+  .row-section1 h3 {
+    margin-top: 8px;
+  }
+
+  .row-section1 p {
+    margin-top: 10px ; 
+    font-size: 12px !important;
+  }
+  
+  .row-section1 button {
+    margin-top: 10px;
+    align-self: flex-start;
+    margin-bottom: 10px;
+  }
+  
+  .row-section1 .col-lg-6,
+  .row-section1 .col-md-6 {
+    flex: 0 0 50%; 
+  }
+
+  .section-image1 {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: flex-start;
+    margin-right: 50px;
+  }
+  
+  .section-image1 img {
+    max-width: 150px;
+  }
+  
+  @media (max-width: 768px) {
+    .row-section1 {
+      flex-direction: column;
+      align-items: center;
+    }
+  }  */
+
+
  
    
 
