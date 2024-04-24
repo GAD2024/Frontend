@@ -547,6 +547,47 @@ tbody tr td:nth-child(2) {
     text-transform:capitalize;
 }
 
+/* .dashboard .button-post {
+    background-color: #F97316;
+    font-weight: 700;
+    border-radius: 8px;
+    display: inline-flex;
+    justify-content: center;
+    width: 180px;
+    align-items: center;
+    height: 40px;
+    color:#fff;
+    font-size:15px;
+    text-transform:capitalize;
+} */  
+
+
+.dashboard .button-post {
+    background-color: #F97316;
+    font-weight: 700;
+    border-radius: 8px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 40px;
+    color: #fff;
+    font-size: 15px;
+    text-transform: none;
+    position: relative; /* Required for relative positioning of the arrow */
+    overflow: hidden; /* Ensure the arrow doesn't overflow */
+} 
+
+
+.dashboard .button-post::after {
+    content: '\2192'; /* Unicode character for right arrow */
+    font-size: 17px; /* Adjust arrow size */
+    position: absolute; /* Position the arrow relative to the button */
+    top: 50%; /* Vertically center the arrow */
+    right: 20px; /* Adjust as needed to position the arrow */
+    transform: translateY(-50%); /* Move the arrow up by half its height to center it */
+}
+
 .dashboard .filter-button {
     background-color: #F97316;
     font-weight: 700;

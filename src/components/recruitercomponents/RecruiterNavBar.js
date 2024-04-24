@@ -241,9 +241,9 @@ useEffect(() => {
           <li>
             <Link to="/recruiter-postjob" className={location.pathname === "/recruiter-postjob" ? "tf-effect active" : ""}>
               {/* <span className="icon-work dash-icon"></span> */}
-              <button className="button-status">Post Job</button>
+              <button className="button-post">Post a Job</button>
             </Link>
-          </li>
+          </li>   
         </ul>
       </div>
     </div>
