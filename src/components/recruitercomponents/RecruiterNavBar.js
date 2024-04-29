@@ -251,4 +251,4 @@ useEffect(() => {
 </div>
   )
 }
-export default RecruiterNavBar;
+export default RecruiterNavBar; 
