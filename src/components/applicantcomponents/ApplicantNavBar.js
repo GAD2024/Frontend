@@ -278,7 +278,7 @@ useEffect(() => {
       </div>
     </div>
     <div className="btn header-item " id="left-menu-btn">
-    {window.innerWidth < 768 && (
+    {window.innerWidth < 800 && (
             <span className="hamburger-icon" onClick={handleToggleMenu}>
               <span />
               <span />
