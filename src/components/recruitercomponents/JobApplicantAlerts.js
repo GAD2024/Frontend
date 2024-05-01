@@ -46,27 +46,25 @@ export default function JobApplicantAlerts() {
             <ul>
               {jobAlerts.map(alert => (
                 <li key={alert.alertsId} className='inner bg-white' style={{width:'100%',padding:'2%',borderRadius:'10px'}}>
-                  <Link to="/recruiter-allapplicants" className="tf-effect">
-                  {/* <Link to={`/appliedapplicantsbasedonjob/${alert.id}`} className="custom-link"> */}
+                  {/* <Link to="/recruiter-allapplicants" className="tf-effect"> */}
+                  <Link to={`/appliedapplicantsbasedonjob/${alert.id}`} className="custom-link">
                   {/* <Link to={`/appliedapplicantsbasedonjob/1`} className="custom-link"> */}
                   <h4>
-                        <a className="noti-icon">
-                        <span className="icon-bell1" ></span></a>
-                        <a style={{ color: alert.newStatus === 'newapplicants' ? 'red' : 'inherit' }}>
-                        {alert.newStatus === 'newapplicants' ? 'New ' : ''}
-                        </a>
-                        &nbsp;
-                        {' '}
-                        <span >
-                       
-                        {alert.alertCount === 1 ? (
-                        <span>{alert.alertCount}&nbsp; applicant has applied for {' '}</span>
-                        ) : (
-                        <span>{alert.alertCount}&nbsp; total applicants have applied for {' '}</span>
-                        )}
-                        </span>
-                        <span style={{ color: 'blue' }}>{alert.jobTitle} </span>role
-                  </h4>
+  <a className="noti-icon" style={{ position: 'relative' }}>
+    <span className="icon-bell1" ></span>
+    {alert.newStatus === 'newapplicants' && <div className="red-dot" style={{ position: 'absolute', top: '5px', right: '-5px', width: '8px', height: '8px', backgroundColor: 'red', borderRadius: '50%' }}></div>}
+  </a>
+  &nbsp;
+  <span>
+    {alert.alertCount === 1 ? (
+      <span>{alert.alertCount}&nbsp; applicant has applied for {' '}</span>
+    ) : (
+      <span>{alert.alertCount}&nbsp; total applicants have applied for {' '}</span>
+    )}
+  </span>
+  <span style={{ color: 'blue' }}>{alert.jobTitle} </span>role
+</h4>
+
                   </Link>
                   {alert.applyJob && (
                     <a href="#" className="custom-link p-16 color-3">{alert.applyJob.jobTitle}</a>
