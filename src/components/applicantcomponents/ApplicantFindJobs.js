@@ -258,7 +258,7 @@ function ApplicantFindJobs({ setSelectedJobId }) {
           onClick={() => handleApplyNowClick(job.id)}
           className="button-status1"
         >
-          Apply Now
+          view job
         </button>
       )}
     </li>

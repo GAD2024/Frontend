@@ -29,6 +29,7 @@ function RecruiterDashboard() {
                 console.error('Error fetching team members:', error);
             });
     }, [user.id]); 
+    
     useEffect(() => {
         const jwtToken = localStorage.getItem('jwtToken');
         if (jwtToken) {

@@ -9,10 +9,6 @@ export default function ApplicantJobAlerts({ setSelectedJobId }) {
   const { user } = useUserContext();
   const navigate = useNavigate();
   const userId = user.id;
-  const [jobs, setJobs] = useState([]);
-  const [profileid1, setprofileid] = useState();
-  const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     const fetchJobAlerts = async () => {
@@ -26,35 +22,6 @@ export default function ApplicantJobAlerts({ setSelectedJobId }) {
     };
     fetchJobAlerts();
   }, [userId]);
-
-  const getAuthToken = () => {
-    return localStorage.getItem('jwtToken');
-  };
-
-  // const handleAlertClick = async (alertId) => {
-  //   try {
-  //     // Call the backend API to mark the alert as seen
-  //     await axios.put(`${apiUrl}/applyjob/applicant/mark-alert-as-seen/${alertId}`);
-      
-  //     // Update the "seen" status of the clicked alert in the frontend
-  //     const updatedJobAlerts = jobAlerts.map(alert => {
-  //       if (alert.alertsId === alertId) {
-  //         return { ...alert, seen: true };
-  //       }
-  //       return alert;
-  //     });
-  //     setJobAlerts(updatedJobAlerts);
-  //   } catch (error) {
-  //     console.error('Error marking alert as seen:', error);
-  //   }
-  // };
-  
-  // const handleJobAlertClick = (job) => {
-  //   const jobId = job.applyJob && job.applyJob.job && job.applyJob.job.id;
-  //   setSelectedJobId(jobId);
-  //   console.log('Selected job ID:', jobId);
-  //   navigate('/applicant-view-job');
-  // };
 
   const handleJobAlertClick = async (job) => {
     try {
@@ -88,7 +55,6 @@ export default function ApplicantJobAlerts({ setSelectedJobId }) {
   }
 
  
-
   return (
     <div className="dashboard__content">
       <section className="page-title-dashboard">
@@ -110,24 +76,21 @@ export default function ApplicantJobAlerts({ setSelectedJobId }) {
                 {jobAlerts.length > 0 ? (
                   <ul>
                     {jobAlerts.map(job => (
-  <li key={job.alertsId} onClick={() => handleJobAlertClick(job)} className='inner bg-white' style={{ width: '100%', padding: '2%', borderRadius: '10px' }}>
-    <a className="noti-icon" style={{ position: 'relative' }} >
-      {job.seen ? null : <div className="red-dot" style={{ position: 'absolute', top: '5px', right: '-5px', width: '8px', height: '8px', backgroundColor: 'red', borderRadius: '50%' }}></div>} 
-      <span className="icon-bell1"></span>
-    </a>
-    <h4>Success!&nbsp; {job.companyName} has updated the job status to {' '}
-      {job.status} on {' '} {formatDate(job.changeDate)}. For the role of {' '} {job.jobTitle}.
-    </h4>
-    {job.applyJob && (
-      <div>
-        <a href="#" className="p-16 color-3">{job.applyJob.jobTitle}</a>
-        {/* Add another clickable element to mark the alert as seen */}
-        {/* <button onClick={() => handleAlertClick(job.alertsId)}>Mark as Seen</button> */}
-      </div>
-    )}
-  </li>
-))}
-
+                      <li key={job.alertsId} onClick={() => handleJobAlertClick(job)} className='inner bg-white' style={{ width: '100%', padding: '2%', borderRadius: '10px', position: 'relative', backgroundColor: job.seen ? '#F0F0F0' : '#FFFFFF' }}>
+                        {/* <a className="noti-icon" style={{ position: 'relative' }}>
+                          
+                          <span className="icon-bell1"></span>
+                        </a> */}
+                        <h4>Success!&nbsp; {job.companyName} has updated the job status to {job.status} on {formatDate(job.changeDate)}. For the role of {job.jobTitle}.</h4>
+                        {job.applyJob && (
+                          <div>
+                            <a href="#" className="p-16 color-3">{job.applyJob.jobTitle}</a>
+                            {/* Add another clickable element to mark the alert as seen */}
+                            {/* <button onClick={() => handleAlertClick(job.alertsId)}>Mark as Seen</button> */}
+                          </div>
+                        )}
+                      </li>
+                    ))}
                   </ul>
                 ) : (
                   <h3>No alerts are found.</h3>
@@ -139,4 +102,5 @@ export default function ApplicantJobAlerts({ setSelectedJobId }) {
       </section>
     </div>
   );
-} 
+}
+
