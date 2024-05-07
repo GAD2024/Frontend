@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { Timeline, TimelineHeaders, TodayMarker, CustomHeader } from 'react-calendar-timeline';
 import 'react-calendar-timeline/lib/Timeline.css';
 import { Link } from 'react-router-dom'; 
-import BackButton from './BackButton';
+import { useNavigate } from 'react-router-dom';
 
 const ApplicantInterviewStatus = ({ selectedJobId, setSelectedJobId }) => {
   const [jobDetails, setJobDetails] = useState(null);
@@ -17,11 +17,40 @@ const ApplicantInterviewStatus = ({ selectedJobId, setSelectedJobId }) => {
   const applicantId = user.id;
   const location = useLocation();
   const jobId = new URLSearchParams(location.search).get('jobId');
-  const storedJobId = localStorage.getItem('checkedJobId');
-  const appliedJobsUrl = localStorage.getItem('appliedJobsUrl');
+  const navigate = useNavigate();
 
-  console.log('Retrieved Job ID:', storedJobId);
-  console.log('Retrieved Applied Jobs URL:', appliedJobsUrl);
+  // const handleGoBack = () => {
+  //   // Navigate back to the previous page
+  //   navigate(-1);
+  // };
+
+  // useEffect(() => {
+  //   // Scroll to the stored position when the component mounts
+  //   const { state } = location;
+  //   if (state && state.scrollPosition) {
+  //     window.scrollTo(0, state.scrollPosition);
+  //   }
+  // }, [location]);
+
+    const handleGoBack = () => {
+    // Navigate back to the previous page with the stored scroll position
+    const { state } = location;
+    if (state && state.scrollPosition) {
+      navigate(-1, { state: { scrollPosition: state.scrollPosition } });
+    } else {
+      navigate(-1);
+    }
+  };
+
+  useEffect(() => {
+    // Scroll to the stored position when the component mounts
+    const { state } = location;
+    if (state && state.scrollPosition) {
+      window.scrollTo(0, state.scrollPosition);
+    }
+  }, [location]);
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,6 +122,7 @@ const ApplicantInterviewStatus = ({ selectedJobId, setSelectedJobId }) => {
 
     fetchJobStatus();
   }, [selectedJobId]);
+
   function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
@@ -108,7 +138,7 @@ const ApplicantInterviewStatus = ({ selectedJobId, setSelectedJobId }) => {
       {loading ? null : (
 <div className="dashboard__content">
 <section className="page-title-dashboard">
-<BackButton jobId={storedJobId} appliedJobsUrl={appliedJobsUrl} />
+<button onClick={handleGoBack}>Go Back</button>
 <div className="themes-container">
 <div className="row">
 <div className="col-lg-12 col-md-12 ">

@@ -76,20 +76,24 @@ export default function ApplicantJobAlerts({ setSelectedJobId }) {
                 {jobAlerts.length > 0 ? (
                   <ul>
                     {jobAlerts.map(job => (
-                      <li key={job.alertsId} onClick={() => handleJobAlertClick(job)} className='inner bg-white' style={{ width: '100%', padding: '2%', borderRadius: '10px', position: 'relative', backgroundColor: job.seen ? '#F0F0F0' : '#FFFFFF' }}>
-                        {/* <a className="noti-icon" style={{ position: 'relative' }}>
-                          
-                          <span className="icon-bell1"></span>
-                        </a> */}
-                        <h4>Success!&nbsp; {job.companyName} has updated the job status to {job.status} on {formatDate(job.changeDate)}. For the role of {job.jobTitle}.</h4>
-                        {job.applyJob && (
-                          <div>
-                            <a href="#" className="p-16 color-3">{job.applyJob.jobTitle}</a>
-                            {/* Add another clickable element to mark the alert as seen */}
-                            {/* <button onClick={() => handleAlertClick(job.alertsId)}>Mark as Seen</button> */}
-                          </div>
-                        )}
-                      </li>
+                     <li key={job.alertsId} onClick={() => handleJobAlertClick(job)} className='inner bg-white' style={{ width: '100%', padding: '2%', borderRadius: '10px', position: 'relative', backgroundColor: job.seen ? '#F0F0F0' : '#FFFFFF' }}>
+                     <div style={{ position: 'relative' }}>
+                       {!job.seen && <div style={{ width: '10px', height: '10px', backgroundColor: 'red', borderRadius: '50%', position: 'absolute', top: '50%', transform: 'translateY(-50%)', left: '-15px' }}></div>} {/* Inline CSS for the red dot */}
+                       <h4>
+  {job.status === "New" ? (
+    `Your application is successfully submitted to ${job.companyName} for ${job.jobTitle} on ${formatDate(job.changeDate)}.`
+  ) : (
+    `Your application status is marked as ${job.status} by ${job.companyName} for ${job.jobTitle} on ${formatDate(job.changeDate)}.`
+  )}
+</h4>
+
+                     </div>
+                     {job.applyJob && (
+                       <div>
+                         <a href="#" className="p-16 color-3">{job.applyJob.jobTitle}</a>
+                       </div>
+                     )}
+                   </li>                   
                     ))}
                   </ul>
                 ) : (
