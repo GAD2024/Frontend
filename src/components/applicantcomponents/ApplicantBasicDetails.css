@@ -1,0 +1,22 @@
+
+.rbt-token:not(:last-child) {
+    padding: 0.7rem !important;
+}
+.rbt-token .rbt-token-remove-button {
+    background-image: none;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    box-shadow: none;
+    color: inherit;
+    display: flex;
+    justify-content: center;
+    font-size: inherit;
+    font-weight: normal;
+    opacity: 1;
+    outline: none;
+    padding: 0.2rem;
+    padding-left: 0;
+    padding-top: 0px;
+    margin-top: 2px;
+    text-shadow: none;
+}
